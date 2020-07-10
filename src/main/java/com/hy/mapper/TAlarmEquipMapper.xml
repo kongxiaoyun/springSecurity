@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.dao.TAlarmEquipMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hy.entity.TAlarmEquip">
+        <id column="ID" property="id" />
+        <result column="EQUIP_ID" property="equipId" />
+        <result column="POINT_ID" property="pointId" />
+        <result column="ALARM_TIME" property="alarmTime" />
+        <result column="ALARM_TYPE" property="alarmType" />
+        <result column="ALARM_VALUE" property="alarmValue" />
+        <result column="ALARM_LV" property="alarmLv" />
+        <result column="ALARM_STAUTS" property="alarmStauts" />
+        <result column="IS_READ" property="isRead" />
+        <result column="ALARM_MAARKER" property="alarmMaarker" />
+        <result column="ALARM_DESCRIBE" property="alarmDescribe" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, EQUIP_ID, POINT_ID, ALARM_TIME, ALARM_TYPE, ALARM_VALUE, ALARM_LV, ALARM_STAUTS, IS_READ, ALARM_MAARKER, ALARM_DESCRIBE
+    </sql>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kxy.mapper.CarMapper">
+	<resultMap type="com.kxy.entity.RegionCar" id="carMap">
+		<result property="regionId" column="region_id"/>
+        <result property="regionName" column="region_name"/>
+        <collection property="speciesCarList" ofType="com.kxy.entity.SpeciesCar">
+        <!-- 此处s_id要和父id区分开，否则子集只有一条数据 -->
+        	<id column="species_id" property="speciesId"/>
+        	<result property="regionId" column="region_id"/>
+        	<result property="speciesName" column="species_name"/>
+        	<collection property="typeCarList" ofType="com.kxy.entity.TypeCar">
+        		<id column="type_id" property="typeId"/>
+	        	<result property="speciesId" column="species_id"/>
+	        	<result property="typeName" column="type_name"/>
+	        	<collection property="nameCarList" ofType="com.kxy.entity.NameCar">
+	        		<id column="car_id" property="carId"/>
+		        	<result property="typeId" column="type_id"/>
+		        	<result property="carName" column="car_name"/>
+	        	</collection>
+        	</collection>
+        </collection>
+	</resultMap>
+	
+
+    <select id="getUserInfo" resultType="com.kxy.entity.User">
+    	select * from user where username = #{name}
+    </select>
+    
+    <select id="queryCarInfo" resultMap="carMap">
+    	select * from region_car rc 
+    	left join species_car sc on rc.region_id = sc.region_id
+		left join type_car tc on sc.species_id = tc.species_id
+		left join name_car nc on tc.type_id = nc.type_id
+    </select>
+</mapper>

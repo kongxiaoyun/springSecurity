@@ -1,0 +1,43 @@
+CREATE TABLE `menu` (
+  `id` varchar(40) NOT NULL COMMENT '菜单标识',
+  `name` varchar(32) DEFAULT NULL COMMENT '菜单名称',
+  `icon` varchar(256) DEFAULT NULL COMMENT '图标',
+  `parent_menu_id` varchar(40) DEFAULT NULL COMMENT '上级菜单标识',
+  `level` tinyint(4) DEFAULT NULL COMMENT '菜单级别',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单信息表';
+
+CREATE TABLE `role` (
+  `id` varchar(40) NOT NULL COMMENT '角色标识',
+  `name` varchar(32) DEFAULT NULL COMMENT '角色名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色信息表';
+
+CREATE TABLE `menu_role` (
+  `id` varchar(40) NOT NULL COMMENT '标识',
+  `role_id` varchar(32) DEFAULT NULL COMMENT '角色id',
+	`menu_id` varchar(32) DEFAULT NULL COMMENT '菜单id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单角色关联表';
+
+CREATE TABLE `user_role` (
+  `id` varchar(40) NOT NULL COMMENT '标识',
+  `role_id` varchar(32) DEFAULT NULL COMMENT '角色id',
+	`user_id` varchar(32) DEFAULT NULL COMMENT '用户id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色关联表';
+
+CREATE TABLE `user` (
+  `id` varchar(255) NOT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `userface` tinyint(4) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_f2ksd6h8hsjtd57ipfq9myr64` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
